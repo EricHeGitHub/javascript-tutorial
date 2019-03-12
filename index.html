@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <script src = './promises.js' ></script>
+        <style>
+            .flex-container {
+                display: flex;
+                background-color: DodgerBlue;
+                flex-direction: column;
+            }
+            
+            .flex-container > div, .flex-container > button, .flex-container > span {
+                background-color: #f1f1f1;
+                margin: 10px;
+                padding: 20px;
+                font-size: 30px;
+                width: 300px;
+                margin: 10px;
+            }
+        </style>
+
+        <script>
+            function reset(){
+                document.getElementById("exponential").value = 0;
+            } 
+
+
+            var expClosure = (function expWrapper(){                
+                return function exp(){
+                    var count = document.getElementById("exponential").value
+                    count = Math.pow(count, 2);
+                    document.getElementById("exponential").value = count;
+                }
+            })();
+
+        </script>
+        
+    </head>
+    <body>
+        <div class="flex-container">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>
+                <input id = "exponential" value = "1"></input>
+                <div>
+                    <button onclick="expClosure()"> Click me to increase exponentially</button>
+                    <button onclick= "reset()">Click me to reset</button>
+                </div>
+                
+            </div>
+
+        </div>
+
+    </body>
+    </html>
