@@ -159,5 +159,6 @@ function myFunction2(a = 7, b = 2){
 function myFunction3(){
     return arguments[0] * arguments[1] * arguments[2]
 }
-console.log(myFunction3(2,3,4))
+console.log(window.myFunction3(2,3,4))
+
 
