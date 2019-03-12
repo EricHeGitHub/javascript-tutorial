@@ -119,6 +119,8 @@ function Person(first, last, age, eye){
     this.eyeColor = eye;
 }
 
+Person.prototype.addr = "here";
+
 Person.prototype.nationality = "China";
 Person.prototype.name = function(){
     return this.firstName + " " + this.lastName;
@@ -127,6 +129,7 @@ Person.prototype.name = function(){
 var myCousin = new Person("Jonathon", "Li", "40", "Green");
 var mySister = new Person("Shay", "Tim", "33", "Black");
 console.log(mySister.name());
+console.log(myCousin.addr)
 
 console.log(Object.getPrototypeOf(mySister));
 console.log(Object.getOwnPropertyDescriptor(mySister,"firstName"));
@@ -161,4 +164,196 @@ function myFunction3(){
 }
 console.log(window.myFunction3(2,3,4))
 
+var callPerson = {
+    firstName : "Eric",
+    lastName : "He",
+    eyeColor: "Pink",
+    get getEyeColor(){
+        return this.eyeColor;
+    },
+    getName : function(){
+        return this.firstName + " " + this.lastName;
+    },
+    getHomeTown: function(suburb, city){
+        return this.firstName + " " + suburb + " " + city;
+    }
+}
 
+var callPerson1 = {
+    firstName: "Bai",
+    lastName: "Lu",
+    eyeColor: "Pink"
+}   
+ var callPerson2 = {
+     firstName: "Matthew",
+     lastName: "Retford",
+     eyeColor: "Pink"
+ }
+
+ console.log(callPerson.getName.call(callPerson2));
+ console.log(callPerson.getHomeTown.call(callPerson1,"Riverwood","Sydney"))
+ console.log(callPerson.getHomeTown.apply(callPerson1,["Perth","Sydney"]))
+ var getHomeTown = callPerson.getHomeTown.bind(callPerson2,"Tianjin","China")
+ console.log(getHomeTown())
+
+ console.log(Math.max(1,2,3,4,5))
+ console.log(Math.max.apply(null, [1,2,3]))
+
+
+ function myFunction4(){
+     return callPerson1;
+ }
+
+ console.log(callPerson1)
+
+ var add = (function (){
+    var counter = 1;
+    var plus = function(){return counter++;}
+    return plus
+ })()
+
+ console.log(add())
+ console.log(add())
+ console.log(add())
+ console.log(add())
+
+ /* Class */
+
+ class Ractangle{
+     constructor(height, width){
+         this.height = height;
+         this.width = width;
+     }
+ }
+
+ const p = new Ractangle();
+
+ let RectangleX =  class{
+        constructor(height, width){
+            this.height = height;
+            this.width = width;
+        }
+        get area(){
+                return this.height * this.width;
+        }
+        speak(){
+            return this;
+        }
+}
+
+let RectangleY =  class Ractangle2{
+    constructor(height, width){
+        this.height = height;
+        this.width = width;
+    }
+}
+
+console.log(RectangleX.name)
+console.log(RectangleY.name)
+
+const square = new RectangleX(2,2);
+console.log(square.area)
+
+class Point{
+    constructor(x, y){
+        this.x = x;
+        this.y = y;
+    }
+    static distance(a, b){
+        const dx = a.x - a.y;
+        const dy = b.x - b.y;
+        return Math.hypot(dx, dy);
+    }
+}
+
+const p1 = new Point(3,5);
+const p2 = new Point(6,-1);
+
+console.log(Point.distance(p1,p2))
+
+console.log(square.speak())
+const speak = square.speak.bind(square);
+console.log(speak())
+
+
+
+function Animal() { 
+    this.speak = function() {
+        return this;
+      };
+    this.eat = function() {
+        return this;
+      }
+}
+
+
+let obj1 = new Animal();
+let speak1 = obj1.speak;
+console.log("Global Object:" + speak1()); // global object
+
+Animal.eat = function() {
+    return this;
+  };
+let eat = Animal.eat
+console.log(eat()); // global object
+
+class Rectangle4{
+    height = 30; //static members cannot be defined here.
+    width = 50; //static members cannot be defined here.
+}
+Rectangle4.height = 30;
+console.log(Rectangle4.height)
+
+
+
+class Animal1 { 
+    speak() {
+      return this;
+    }
+    static eat() {
+      return this;
+    }
+  }
+  
+  let obj2 = new Animal1();
+  console.log(obj2.speak()); // Animal {}
+  let speak2 = obj2.speak.bind(obj2);
+  console.log(speak2()); // undefined
+  
+  Animal1.eat() // class Animal
+  let eat2 = Animal1.eat.bind(obj2);
+  console.log(eat2()); // undefined
+
+  function laptop(){
+      this.id = "100";  
+    }
+
+  laptop.prototype.color = "white";  
+
+   var laptop1 = new laptop();
+   laptop1.color = "red";
+   console.log(laptop1.color)
+
+   var laptop2 = new laptop();
+   console.log(laptop2.color)
+
+function Animal3() { 
+    this.eat3 = function() { // this field is in constructor so cannot be accessed from prototype
+        return this;
+      }
+}
+
+Animal3.prototype.speak = function() {
+  return this;
+}
+
+Animal3.eat3 = function() {
+    return this;
+  }
+
+let obj3 = new Animal3();
+let speak3 = obj3.speak;
+console.log(speak3()); // global object
+
+let eat3 = Animal3.prototype.eat3;
+console.log(eat3); // global object
