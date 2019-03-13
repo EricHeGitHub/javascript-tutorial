@@ -272,12 +272,19 @@ let RectangleY =  class Ractangle2{
         this.width = width;
     }
 }
+RectangleX.age = "40"
+RectangleX.prototype.nickname = "staticName"
 
 console.log(RectangleX.name)
 console.log(RectangleY.name)
 
 const square = new RectangleX(2,2);
 console.log(square.area)
+
+square.nickname = "changedStaticName"
+RectangleX.prototype.nickname = "staticName"
+console.log("This is a static name: " + square.nickname)
+console.log("This is a static age: " + square.age)
 
 class Point{
     constructor(x, y){
@@ -368,7 +375,7 @@ function Animal3() {
       }
 }
 
-Animal3.prototype.speak = function() {
+Animal3.prototype.speak = function() { 
   return this;
 }
 
@@ -382,3 +389,61 @@ console.log(speak3()); // global object
 
 let eat3 = Animal3.prototype.eat3;
 console.log(eat3); // global object
+
+class InheritAnimal{
+    constructor(name){
+        this.name = name;
+    }
+    speak(){
+        console.log(this.name + ' makes a noise')
+    }
+}
+
+class Dog extends InheritAnimal{
+    constructor(name){
+        super(name)
+    }
+    speak(){
+        console.log(this.name + ' barks')
+    }
+}
+
+var d = new Dog("John");
+d.speak()
+
+function functionalAnimal(name){
+    this.name = name;
+    this.speak = function(){
+        console.log(this.name + ' makes a noise.')
+    }
+}
+
+class FuntionalDog extends functionalAnimal{
+
+}
+
+let df = new FuntionalDog('Mitzie');
+df.speak();
+
+
+class Cat{
+    constructor(name){
+        this.name = name;
+    }
+    speak(){
+        console.log(this.name + ' make a noise.')
+    }
+}
+
+class Lion extends Cat{
+    constructor(name){
+        super(name);
+    }
+    speak(){
+        super.speak();
+        console.log(this.name + 'maake a rarrrrrr!!!!')
+    }
+}
+
+var l = new Lion("Lion ")
+l.speak();
