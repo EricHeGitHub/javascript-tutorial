@@ -119,6 +119,29 @@ function Person(first, last, age, eye){
     this.eyeColor = eye;
 }
 
+Object.defineProperty(Person.prototype, "getName", {get :function(){
+    return this.firstName + " this is getter defined for a constructor " + this.lastName;
+}
+})
+
+
+Object.defineProperties(Person.prototype, {
+    occupation : {
+        get: function(){
+            return "developer";
+        },
+        set: function(data){
+            console.log(data);
+        }
+    },
+    visaStatus : {
+        value : "permenant residnece"
+    },
+})
+
+
+
+
 Person.prototype.addr = "here";
 
 Person.prototype.nationality = "China";
@@ -128,9 +151,11 @@ Person.prototype.name = function(){
 
 var myCousin = new Person("Jonathon", "Li", "40", "Green");
 var mySister = new Person("Shay", "Tim", "33", "Black");
+console.log(myCousin.getName)
 console.log(mySister.name());
 console.log(myCousin.addr)
-
+console.log(myCousin.occupation)
+myCousin.occupation = "action!!!"
 console.log(Object.getPrototypeOf(mySister));
 console.log(Object.getOwnPropertyDescriptor(mySister,"firstName"));
 
