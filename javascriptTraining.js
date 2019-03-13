@@ -447,3 +447,37 @@ class Lion extends Cat{
 
 var l = new Lion("Lion ")
 l.speak();
+
+// document.getElementById("myButton").addEventListener("click", function(){
+//     console.log(event)
+//     console.log(this)
+// })
+
+function test(element){
+    console.log(event)
+    console.log(element)
+}
+
+var body = document.getElementsByTagName("body")[0];
+
+var div = document.createElement("div");
+
+var para = document.createElement("p");
+
+var textNode = document.createTextNode("lorem ipsum");
+
+para.appendChild(textNode);
+div.appendChild(para);
+body.append(div);
+
+console.log(typeof(0));
+
+var s = "string"
+
+s[0] = 't'
+
+console.log(s)
+
+var a = ["s","t"]
+a[0] = "b"
+console.log(a)
