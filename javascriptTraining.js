@@ -481,3 +481,17 @@ console.log(s)
 var a = ["s","t"]
 a[0] = "b"
 console.log(a)
+
+var searchStrin = "abcdefghihjk"
+
+console.log(searchStrin.match(/h/g))
+
+var spliceArr = ["Emil", "Tobias", "Linus"];
+spliceArr.splice(2, 0)
+console.log(spliceArr)
+
+
+var fruits = ["Apple", "Banana", "Orange"];
+for (x in fruits) {
+  console.log(x);
+}
