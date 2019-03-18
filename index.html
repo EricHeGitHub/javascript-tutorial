@@ -26,6 +26,7 @@
         <script>
             function reset(){
                 document.getElementById("exponential").value = 0;
+                window.open("https://www.baidu.com");
             } 
 
 
@@ -36,6 +37,13 @@
                     document.getElementById("exponential").value = count;
                 }
             })();
+
+            function changeText(element){ 
+                element.innerHTML = element.getAttribute("href"); 
+            }
+            function changeText2(element){ 
+                element.innerHTML = "testest"; 
+            }
 
         </script>
         
@@ -49,7 +57,8 @@
                 <input id = "exponential" value = "1"></input>
                 <div>
                     <button onclick="expClosure()"> Click me to increase exponentially</button>
-                    <button onclick= "reset()">Click me to reset</button>
+                    <button onclick= "reset()">Click me to reset</button> <br>
+                    <a href="http://www.youtube.com" onclick="changeText(this);changeText2(this);">Click me to watch videos</a>
                 </div>
                 
             </div>
